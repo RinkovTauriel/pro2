@@ -1,5 +1,4 @@
 Бинарная куча (Min-Heap)
-cpp
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -19,7 +18,6 @@ int main() {
 }
 
 Хеш-таблица
-cpp
 #include <iostream>
 #include <unordered_map>
 using namespace std;
