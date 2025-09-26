@@ -33,6 +33,46 @@ class HashTable:
         else:
             raise KeyError(key)
 
+Куча Фибоначчи (упрастил реализацию на Python)
+class FibonacciHeap:
+    class Node:
+        def init(self, key):
+            self.key = key
+            self.degree = 0
+            self.mark = False
+            self.parent = None
+            self.child = None
+            self.left = self
+            self.right = self
+
+    def init(self):
+        self.min_node = None
+        self.count = 0
+
+    def insert(self, key):
+        node = self.Node(key)
+        if self.min_node is None:
+            self.min_node = node
+        else:
+            self._add_to_root_list(node)
+            if key < self.min_node.key:
+                self.min_node = node
+        self.count += 1
+
+    def _add_to_root_list(self, node):
+        node.left = self.min_node
+        node.right = self.min_node.right
+        self.min_node.right.left = node
+        self.min_node.right = node
+
+    def get_min(self):
+        return self.min_node.key if self.min_node else None
+
+fib_heap = FibonacciHeap()
+fib_heap.insert(10)
+fib_heap.insert(5)
+print(fib_heap.get_min())
+
 ht = HashTable(10)
 ht.set("Alice", "January")
 print(ht.get("Alice"))
