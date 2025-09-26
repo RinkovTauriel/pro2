@@ -1,0 +1,38 @@
+Бинарная куча (Min-Heap)
+import heapq
+
+data = [8, 3, 5, 1, 6, 2, 4, 7]
+heapq.heapify(data)
+heapq.heappush(data, 0)
+min_val = heapq.heappop(data)
+print(min_val)
+
+Хеш-таблица
+class HashTable:
+    def init(self, size):
+        self.size = size
+        self.table = [None] * size
+
+    def _hash(self, key):
+        return hash(key) % self.size
+
+    def set(self, key, value):
+        idx = self._hash(key)
+        self.table[idx] = (key, value)
+
+    def get(self, key):
+        idx = self._hash(key)
+        if self.table[idx] and self.table[idx][0] == key:
+            return self.table[idx][1]
+        raise KeyError(key)
+
+    def remove(self, key):
+        idx = self._hash(key)
+        if self.table[idx] and self.table[idx][0] == key:
+            self.table[idx] = None
+        else:
+            raise KeyError(key)
+
+ht = HashTable(10)
+ht.set("Alice", "January")
+print(ht.get("Alice"))
